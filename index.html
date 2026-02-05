@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRINKTEX | Custom Studio</title>
+    <!-- Google Fonts: Archivo Black para impacto y Space Grotesk para un toque moderno -->
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* VARIABLES - Paleta Neo-Brutalista */
+        :root {
+            --primary: #7c3aed; /* Morado vibrante */
+            --secondary: #facc15; /* Amarillo brillante */
+            --bg: #ffffff;
+            --black: #000000;
+            --white: #ffffff;
+            --border-width: 4px;
+            --shadow-offset: 6px;
+        }
+
+        /* RESET & BASE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--black);
+            font-family: 'Space Grotesk', sans-serif;
+            line-height: 1.4;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: 'Archivo Black', sans-serif;
+            text-transform: uppercase;
+        }
+
+        /* COMPONENTES BRUTALISTAS */
+        .brutal-card {
+            background: var(--white);
+            border: var(--border-width) solid var(--black);
+            box-shadow: var(--shadow-offset) var(--shadow-offset) 0px var(--black);
+            padding: 2rem;
+            transition: 0.2s;
+        }
+
+        .brutal-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 10px 10px 0px var(--black);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-family: 'Archivo Black', sans-serif;
+            text-transform: uppercase;
+            border: var(--border-width) solid var(--black);
+            cursor: pointer;
+            transition: 0.2s;
+            text-decoration: none;
+            color: var(--black);
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            box-shadow: 4px 4px 0px var(--black);
+        }
+
+        .btn-primary:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px var(--black);
+        }
+
+        /* HEADER */
+        header {
+            border-bottom: var(--border-width) solid var(--black);
+            background: var(--white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        .logo {
+            font-size: 2rem;
+            background: var(--primary);
+            color: var(--white);
+            padding: 5px 15px;
+            border: var(--border-width) solid var(--black);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 700;
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        /* HERO */
+        .hero {
+            background: var(--primary);
+            color: var(--white);
+            padding: 100px 5%;
+            text-align: center;
+            border-bottom: var(--border-width) solid var(--black);
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 10vw, 6rem);
+            line-height: 0.8;
+            margin-bottom: 2rem;
+            -webkit-text-stroke: 2px var(--black);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            font-weight: 500;
+        }
+
+        /* CATALOGO */
+        .catalog {
+            padding: 80px 5%;
+            background: var(--secondary);
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            background: var(--white);
+            padding: 10px 20px;
+            font-family: 'Archivo Black', sans-serif;
+            border: 3px solid var(--black);
+            cursor: pointer;
+            box-shadow: 3px 3px 0px var(--black);
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .iframe-container {
+            background: var(--white);
+            border: var(--border-width) solid var(--black);
+            box-shadow: 12px 12px 0px var(--black);
+            height: 600px;
+        }
+
+        .iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* PERSONALIZAR */
+        .custom {
+            padding: 100px 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .custom-img {
+            background: var(--primary);
+            border: var(--border-width) solid var(--black);
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .custom-img i {
+            font-size: 15rem;
+            color: var(--secondary);
+            filter: drop-shadow(5px 5px 0px var(--black));
+        }
+
+        .custom h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        /* PASOS */
+        .steps {
+            background: var(--black);
+            color: var(--white);
+            padding: 80px 5%;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .step {
+            padding: 30px;
+            border: 2px solid var(--white);
+        }
+
+        .step-num {
+            background: var(--secondary);
+            color: var(--black);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Archivo Black', sans-serif;
+            margin-bottom: 20px;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 80px 5% 40px;
+            border-top: var(--border-width) solid var(--black);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-link {
+            display: inline-flex;
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--black);
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 10px;
+            background: var(--white);
+            box-shadow: 3px 3px 0px var(--black);
+            color: var(--black);
+        }
+
+        .social-link:hover {
+            background: var(--secondary);
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0px var(--black);
+        }
+
+        /* WA FLOAT */
+        .wa-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25d366;
+            color: var(--white);
+            padding: 15px 25px;
+            font-weight: 800;
+            border: 3px solid var(--black);
+            box-shadow: 5px 5px 0px var(--black);
+            z-index: 2000;
+            text-decoration: none;
+        }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .custom { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 3.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">BRINKTEX</div>
+            <div class="nav-links">
+                <a href="#inicio">Home</a>
+                <a href="#catalogo">Catálogo</a>
+                <a href="#personalizar">Personalizar</a>
+            </div>
+            <a href="https://wa.me/524532266714" class="btn btn-primary" style="padding: 5px 15px; font-size: 0.8rem;">Chat</a>
+        </nav>
+    </header>
+
+    <a href="https://wa.me/524532266714" class="wa-float">
+        <i class="fab fa-whatsapp"></i> PEDIR YA
+    </a>
+
+    <section class="hero" id="inicio">
+        <h1>HAZLO <br>TUYO!</h1>
+        <p>Impresión DTF que explota en color. No somos solo una tienda, somos tu estudio de creación personal.</p>
+        <a href="#catalogo" class="btn btn-primary" style="font-size: 1.5rem;">Explorar Diseños</a>
+    </section>
+
+    <section class="catalog" id="catalogo">
+        <div class="container">
+            <div class="tabs">
+               <button class="tab-btn active" onclick="loadCat('anime', this)">ANIME</button>
+<button class="tab-btn" onclick="loadCat('parejas', this)">AMOR</button>
+<button class="tab-btn" onclick="loadCat('musica', this)">MUSICA</button>
+<button class="tab-btn" onclick="loadCat('formula1', this)">FORMULA 1</button>
+<button class="tab-btn" onclick="loadCat('series', this)">SERIES</button>
+<button class="tab-btn" onclick="loadCat('peliculas', this)">PELICULAS</button>
+<button class="tab-btn" onclick="loadCat('futbol', this)">FUTBOL</button>
+<button class="tab-btn" onclick="loadCat('otros', this)">OTROS</button>
+<button class="tab-btn" onclick="loadCat('personalizados', this)">PERSONALIZADOS</button>
+
+            </div>
+            
+            <div class="iframe-container">
+                <iframe id="cat-iframe" src="URL_GOOGLE_DRIVE_ANIME"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section class="custom" id="personalizar">
+        <div class="custom-img brutal-card">
+            <i class="fas fa-bolt"></i>
+            <div style="position: absolute; top: -15px; right: -15px; background: var(--secondary); border: 3px solid black; padding: 10px; font-weight: 800; transform: rotate(10deg);">
+                CALIDAD 4K
+            </div>
+        </div>
+        <div>
+            <h2>Envía tu idea,<br>nosotros la <span style="background: var(--primary); color: white; padding: 0 10px;">estampamos</span>.</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">¿Tienes un diseño listo? ¿Un dibujo? ¿O solo una frase? Nuestra tecnología DTF garantiza que el color se quede ahí por siempre.</p>
+            <div class="brutal-card" style="margin-bottom: 2rem; background: var(--secondary);">
+                <ul style="list-style: none;">
+                    <li style="margin-bottom: 10px;"><b>1.</b> Envía tu PNG por WhatsApp</li>
+                    <li style="margin-bottom: 10px;"><b>2.</b> Elige tu prenda favorita</li>
+                    <li><b>3.</b> Recibe en tiempo récord</li>
+                </ul>
+            </div>
+            <a href="https://wa.me/524532266714" class="btn btn-primary" style="width: 100%;">¡Personalizar Ahora!</a>
+        </div>
+    </section>
+
+    <section class="steps">
+        <div class="steps-grid">
+            <div class="step">
+                <div class="step-num">01</div>
+                <h3>ELIGE</h3>
+                <p>Busca en el catálogo o crea lo tuyo.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">02</div>
+                <h3>PAGA</h3>
+                <p>Transferencia o efectivo. Fácil.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">03</div>
+                <h3>CONFIRMA</h3>
+                <p>Te enviamos una previsualización.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">04</div>
+                <h3>DISFRUTA</h3>
+                <p>Recibe tu producto y presume tu estilo.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <h2 style="margin-bottom: 20px;">BRINKTEX</h2>
+                <p>Personalización sin filtros, sin límites, solo puro estilo.</p>
+                <div style="margin-top: 20px;">
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+            <div>
+                <h3>LINKS</h3>
+                <ul style="list-style: none; margin-top: 20px;">
+                    <li><a href="#inicio" style="color: black; text-decoration: none;">Inicio</a></li>
+                    <li><a href="#catalogo" style="color: black; text-decoration: none;">Catálogo</a></li>
+                    <li><a href="#personalizar" style="color: black; text-decoration: none;">Personalizados</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>CONTACTO</h3>
+                <p style="margin-top: 20px;">brinktex26@gmail.com</p>
+                <p>WhatsApp: +52 453 226 6714</p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 60px; font-weight: 700;">
+            © 2026 BRINKTEX - DISEÑOS INCREÍBLES PARA PERSONAS INCREÍBLES 
+        </div>
+    </footer>
+
+    <script>
+function loadCat(cat, btn) {
+    const frame = document.getElementById('cat-iframe');
+    const btns = document.querySelectorAll('.tab-btn');
+
+    // quitar activo a todos
+    btns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    // si es personalizados → WhatsApp
+    if (cat === 'personalizados') {
+        window.open(
+          'https://wa.me/524532266714?text=Hola%20quiero%20un%20diseño%20personalizado',
+          '_blank'
+        );
+        return;
+    }
+
+    const driveLinks = {
+        anime: 'https://drive.google.com/embeddedfolderview?id=1npnhMcpvGkve-bAbbs3Pi596Mk8H0rrv#grid',
+        peliculas: 'https://drive.google.com/embeddedfolderview?id=10IiHYZM5oercUSoeQELGLkMfbSK4mm4W#grid',
+        parejas: 'https://drive.google.com/embeddedfolderview?id=11Xg47S2d2-AaIqtmiaoLlTP2K8iPcPEY#grid',
+        musica: 'https://drive.google.com/embeddedfolderview?id=1wbnk56JBQaOixa37i40rt3F3_G2z_kpV#grid',
+        formula1: 'https://drive.google.com/embeddedfolderview?id=1gPLm_Q1qH7IGN1HdfmwmdTxAppz-qfp9#grid',
+        series: 'https://drive.google.com/embeddedfolderview?id=1D4AaXvDv7PxWj1b5lawjRDB0PKxKMkxP#grid',
+        futbol: 'https://drive.google.com/embeddedfolderview?id=1bMHxuhfMS7jboxJk4Kka35vBSO4K2C-R#grid',
+        otros: 'https://drive.google.com/embeddedfolderview?id=1Aa5w6JnpUnNXcE7mkgkJt-w96UwVI0m7#grid'
+    };
+
+    frame.src = driveLinks[cat];
+}
+</script>
+
+};
+
+    };
+
+    frame.src = driveLinks[cat];
+        }
+    </script>
+</body>
+</html>
